@@ -32,7 +32,7 @@ module "load_balancer" {
   network            = var.network
   subnetwork         = var.subnetwork
   instance_group_url = module.autoscaling.instance_group_url
-  port               = var.ps_port
+  ports              = concat([var.ps_port], var.additional_lb_ports)
   name_prefix        = var.name_prefix
 
   labels = var.labels

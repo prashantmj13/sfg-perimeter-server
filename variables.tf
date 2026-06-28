@@ -64,8 +64,14 @@ variable "ps_install_dir" {
 
 variable "ps_port" {
   type        = number
-  description = "Port the perimeter server listens on (used for health check and named port)."
-  default     = 5001
+  description = "Control port the perimeter server listens on for the SFG engine connection. Configured in the startup script as localPort."
+  default     = 10011
+}
+
+variable "additional_lb_ports" {
+  type        = list(number)
+  description = "Extra TCP ports to open on the internal load balancer (e.g. [8089] for 3rd party file transfer). These ports are NOT configured in the startup script — the application team configures them in the perimeter server after deployment."
+  default     = []
 }
 
 variable "sfg_engine_ip" {
